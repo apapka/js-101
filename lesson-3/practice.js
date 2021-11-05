@@ -42,11 +42,23 @@ let arr = [2, 4, 6];
 let arr2 = [8, 10, 12];
 
 function moreSplice(array, array2) {
+  //local variable array refers to global variable arr
+  //local variable array2 refers to global variable arr2
   array[0] = array2;    //changes arr to [[8,10,12], 4,6]
-  array[0].splice(1, 1, 100); //changes arr to [[8,100,12],4,6]
+  //this destructive reassignment puts array[0] to the same memory location as array2.
+  array[0].splice(1, 1, 100); //changes arr to [[8,100,12],4,6] and arr2 to [8,100,12]
 }
 
 moreSplice(arr, arr2);
 
 console.log(arr); //[[8,100,12],4,6]
 console.log(arr2) //8,100,12
+
+
+// pass by value vs pass by reference
+let object = { first: [1] };
+let numArray = object["first"];
+numArray.push(2);
+
+console.log(numArray); //  => "[1, 2]"
+console.log(object);

@@ -12,3 +12,15 @@ function isDotSeparatedIpAddress(inputString) {
 
   return true;
 }
+
+function isAnIpNumber(str) {
+  if (/^\d+$/.test(str)) {
+    let number = Number(str);
+    return number >= 0 && number <= 255;
+  }
+
+  return false;
+}
+
+
+
