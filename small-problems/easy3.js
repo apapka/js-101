@@ -25,73 +25,206 @@ characters collapsed into a single character.
 // crunch('');                           // ""
 
 
+//Bannerizer----------------------------------------------------------------
+//Write a function that will take a short line of text, and 
+//write it to the console log within the box.
 
-/*The end is near but not here ----------------------------------------------------
-Write a function that returns the next to last word in the String passed to it as an argument.
+function logInBox(string){
+  let dashLine = "+";
+  let emptyLine = "|"
+  let stringLine = "| " + string + " |"
+  for (let i = 0; i < string.length + 2; i ++){
+    dashLine += "-";
+    emptyLine += " ";
+  }
+  dashLine += "+"
+  emptyLine +="|";
+  console.log(dashLine);
+  console.log(emptyLine);
+  console.log(stringLine);
+  console.log(emptyLine);
+  console.log(dashLine);
+}
+logInBox('');
+logInBox('To boldly go where no one has gone before.');
 
-Words are any sequence of non-blank characters.
+//take 2
+function loginBox(string) {
+let dashedLine = '+' + '-'.repeat(string.length + 2) + '+';
+let emptiedLine = '|' + " ".repeat(string.length + 2) + '|';
+let stringLine = '| ' + string + ' |';
 
-You may assume that the input String will always contain at least two words.
-(*/
+console.log(dashedLine);
+console.log(emptiedLine);
+console.log(stringLine);
+console.log(emptiedLine);
+console.log(dashedLine);
+}
+loginBox('');
+loginBox('To boldly go where no one has gone before.');
 
+//Stringy strings------------------------------------------------------------
+//Write a function that takes one argument, a positive integer, and returns a
+//string of alternating '1's and '0's , always starting with a '1'. 
+//The length of the string should match the given integer.
 
-// function penultimate(string){
-//   let arr = string.split(" ");
-//   return arr[arr.length-2];
-// }
-// console.log(penultimate("last word") === "last"); // logs true
-// console.log(penultimate("Launch School is great!") === "is"); // logs true
+function stringy(number){
+  let string = "";
+  for (let i = 1; i <= number; i++) {
+    if (i % 2 === 1){
+      string += '1';
+    } else {
+      string += '0';
+    }
 
+  }
+  return string;
+}
+console.log(stringy(6));    // "101010"
+console.log(stringy(9));    // "101010101"
+console.log(stringy(4));    // "1010"
+console.log(stringy(7));    // "1010101"
 
-/*Exclusive OR -----------------------------------------------------------------------
+//fibonacci index by length
 
+//right triangles
 
-The || operator returns a truthy value if either or both of its 
-operands are truthy, a falsey value if both operands are falsey. 
-The && operator returns a truthy value if both of its operands are truthy, 
-and a falsey value if either operand is falsey. This works great until
- you need only one, but not both, of two conditions to be truthy:
-  the so-called exclusive or.
+function triangle(x) {
+  let numSpaces = x;
+  let numStars = 0;
+  while(numSpaces >= 0){
+    console.log(" ".repeat(numSpaces) + "*".repeat(numStars));
+    numSpaces -= 1;
+    numStars += 1;
+  }
+}
+triangle(5);
+triangle(9);
 
-In this exercise, you will write a function named xor that takes two 
-arguments, and returns true if exactly one of its arguments is truthy, 
-false otherwise. Note that we are looking for a boolean result instead 
-of a truthy/falsy value as returned by || and &&.
+//Madlibs: 
 
- */
+// let rlSync = require('readline-sync');
+// let noun = rlSync.question('Enter a noun: ');
+// let verb = rlSync.question('Enter a verb: ');
+// let adjective = rlSync.question('Enter an adjective: ');
+// let adverb = rlSync.question('Enter an adverb: ');
 
-// function xor (arg1, arg2){
-//     if ((arg1 && !arg2) || (arg2 && !arg1)) {
-//       return true;
-//     }
-//     return false;
-//   }
-// console.log(xor(5, 0) === true);
-// console.log(xor(false, true) === true);
-// console.log(xor(1, 1) === false);
-// console.log(xor(true, true) === false);
+// console.log(`Do you ${verb} your ${adjective} ${noun} ${adverb}? That's hilarious!`);
+// console.log(`The ${adjective} ${noun} ${verb}s ${adverb} over the lazy ${noun}`);
+// console.log(`The ${noun} ${adverb} ${verb}s up ${adjective} Joe's turtle`);
 
-/* Odd lists -----------------------------------------------------------------
+//Double doubles
+//A double number is an even-length number whose left-side digits are exactly 
+//the same as its right-side digits. 
+//Write a function that returns the number provied as an argument multiplied by two, unless the 
+//argument is a double number; otherwise return the double number as-is
 
-Write a function that returns an Array that contains every other element 
-of an Array that is passed in as an argument. The values in the returned 
-list should be those values that are in the 1st, 3rd, 5th, and so on elements 
-of the argument Array.
-*/
+function isDoubleNumber(number){
+  if(String(number).length % 2 === 0){
+    let midpoint = String(number).length / 2;
+    let leftSide = String(number).slice(0,midpoint);
+    let rightSide = String(number).slice(midpoint);
+    if (leftSide === rightSide){
+      return true;
+    }else{
+      return false;
+    }
+  }else{
+    return false;
+  }
+}
 
-// function oddities(arr){
-//   let newArray =[];
-//   for (let i = 0; i < arr.length; i +=2){
-//     newArray.push(arr[i]);
-//   }
-//   return newArray;
-// }
+function twice(number){
+  if (isDoubleNumber(number)){
+    console.log(number);
+    return number;
+  }else{
+    console.log(number * 2);
+    return number * 2;
+  }
+}
+// twice(37);          // 74
+// twice(44);          // 44
+// twice(334433);      // 668866
+// twice(444);         // 888
+// twice(107);         // 214
+// twice(103103);      // 103103
+// twice(3333);        // 3333
+// twice(7676);        // 7676
 
-// Examples:
+//Grade Book
+function getGrade(one, two, three){
+  let avg = (one + two + three) / 3;
+  console.log(avg);
+  let grade;
+  if (avg >= 90) {
+      grade = 'A';
+  } else if (avg >=80) {
+      grade =  'B';
+  } else if (avg >= 70) {
+      grade = 'C';
+  } else if (avg >= 60) {
+      grade = 'D';
+  } else {
+      grade = 'F';
+  }
+  return grade;
+}
+// console.log(getGrade(95,90,93));
+// console.log(getGrade(50,50,95));
 
-// Copy Code
-// console.log(oddities([2, 3, 4, 5, 6])); // logs [2, 4, 6]
-// console.log(oddities([1, 2, 3, 4, 5, 6])); // logs [1, 3, 5]
-// console.log(oddities(["abc", "def"])); // logs ['abc']
-// console.log(oddities([123])); // logs [123]
-// console.log(oddities([])); // logs []
+//Clean up the words
+function cleanUp(string){ 
+//allowed charCodes are between 65 and 90 and between 97 and 122, inclusive
+  let newString = '';
+  for (let char of string) {
+    let charCode = char.charCodeAt();
+    if ((charCode <= 90 && charCode >=65) || (charCode >= 90 && charCode <= 122)){
+      newString += char;
+    } else if (newString[newString.length - 1] !== ' '){
+      newString += " ";
+    }
+  }
+  return newString;
+
+}
+// console.log(cleanUp("---what's my +*& line?"));
+
+//What century is that?
+
+function century(year){
+  let century = Math.ceil(year / 100);
+  let lastDigit = century % 10;
+  let lastTwoDigits = century % 100;
+  let centuryString = String(century);
+  if (lastTwoDigits > 10 && lastTwoDigits < 14){
+    centuryString += 'th';
+  } else{
+    switch (lastDigit){
+      case 1:
+        centuryString += 'st';
+        break;
+      case 2: 
+        centuryString += 'nd';
+        break;
+      case 3:
+        centuryString += 'rd'
+        break;
+      default:
+        centuryString += 'th';
+        break;
+
+    }
+  }
+  console.log(centuryString);
+  return centuryString;
+}
+century(2000);        // "20th"
+century(2001);        // "21st"
+century(1965);        // "20th"
+century(256);         // "3rd"
+century(5);           // "1st"
+century(10103);       // "102nd"
+century(1052);        // "11th"
+century(1127);        // "12th"
+century(11201);       // "113th"
