@@ -61,9 +61,8 @@ function computerChoosesSquare(board) {
     let threat = findThreat(board);
     if (threat > 0) {
       board[threat] = COMPUTER_MARKER;
-    } else if (emptySquares(board).includes('5')) { 
+    } else if (emptySquares(board).includes('5')) {
       board[5] = COMPUTER_MARKER;
-    
     } else {
       let randomIndex = Math.floor(Math.random() * emptySquares(board).length);
       let square = emptySquares(board)[randomIndex];
@@ -72,8 +71,7 @@ function computerChoosesSquare(board) {
   }
 
 }
-//returns the number on the board of a threat.
-// if no threats, returns 0.
+
 function findThreat(board) {
   for (let array of WINNING_LINES) {
     let boardLine = array.map(element => board[element]);
@@ -85,8 +83,6 @@ function findThreat(board) {
   return 0;
 }
 
-//returns the index of the threat in the line
-//if no threat, returns 0.
 function findThreatInLine(line) {
   let zero = (line [0] === 'X');
   let one = (line [1] === 'X');
@@ -103,11 +99,11 @@ function findThreatInLine(line) {
 }
 
 function findOpportunity(board) {
-  for (let array of WINNING_LINES) {
-    let boardLine = array.map(element => board[element]);
+  for (let winningLine of WINNING_LINES) {
+    let boardLine = winningLine.map(element => board[element]);
     let opportunity = findOpportunityInLine(boardLine);
     if (opportunity >= 0) {
-      return array[opportunity];
+      return winningLine[opportunity];
     }
   }
   return 0;
