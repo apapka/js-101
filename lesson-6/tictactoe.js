@@ -13,6 +13,7 @@ function displayBoard(board) {
   console.clear();
 
   console.log(`You are ${HUMAN_MARKER}. Computer is ${COMPUTER_MARKER}.`);
+  console.log(`You must win ${ROUNDS_TO_WIN} games to win the match.`);
   console.log('');
   console.log('     |     |');
   console.log(`  ${board['1']}  |  ${board['2']}  |  ${board['3']}`);
