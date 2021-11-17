@@ -8,6 +8,7 @@ const WINNING_LINES = [
   [1, 4, 7], [2, 5, 8], [3, 6, 9], // columns
   [1, 5, 9], [3, 5, 7]             // diagonals
 ];
+const MIDDLE_SQUARE = '5';
 
 function displayBoard(board) {
   console.clear();
@@ -62,8 +63,8 @@ function computerChoosesSquare(board) {
     let threat = findThreat(board);
     if (threat > 0) {
       board[threat] = COMPUTER_MARKER;
-    } else if (emptySquares(board).includes('5')) {
-      board[5] = COMPUTER_MARKER;
+    } else if (emptySquares(board).includes(MIDDLE_SQUARE)) {
+      board[MIDDLE_SQUARE] = COMPUTER_MARKER;
     } else {
       let randomIndex = Math.floor(Math.random() * emptySquares(board).length);
       let square = emptySquares(board)[randomIndex];
