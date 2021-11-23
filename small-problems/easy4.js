@@ -138,15 +138,17 @@ function wordSizes(string){
 
 //letter count part 2
 
-function removeNonLetters(string){
-  let newString ="";
-  for(char of string){
-    if (char >= 'a' && char <= 'z' || char === ' '){
-      newString += char;
-    }
-  }
-  return newString
-}
+
+
+// function removeNonLetters(string){
+//   let newString ="";
+//   for(char of string){
+//     if (char >= 'a' && char <= 'z' || char >= 'A' && char <= 'Z'|| char === ' '){
+//       newString += char;
+//     }
+//   }
+//   return newString
+// }
 
 // console.log(wordSizes(removeNonLetters('Four score and seven')));
 // console.log(wordSizes(removeNonLetters("What's up doc?")));

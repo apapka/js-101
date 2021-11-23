@@ -86,7 +86,21 @@ console.log(stringy(4));    // "1010"
 console.log(stringy(7));    // "1010101"
 
 //fibonacci index by length
+function findFibonacciIndexByLength(length) {
+  let first = 1n;
+  let second = 1n;
+  let count = 2n;
+  let fibonacci;
 
+  do {
+    fibonacci = first + second;
+    count += 1n;
+    first = second;
+    second = fibonacci;
+  } while (String(fibonacci).length < length);
+
+  return count;
+}
 //right triangles
 
 function triangle(x) {
