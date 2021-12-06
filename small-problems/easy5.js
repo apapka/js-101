@@ -161,3 +161,24 @@ function average(arr){
 // console.log(average([9, 47, 23, 95, 16, 52]));
 
 //after midnight part 1
+
+function timeOfDay(min) {
+  const MIN_PER_HOUR = 60;
+  const HOURS_PER_DAY = 24;
+  let minutes;
+  let hours;
+  if (min >= 0){
+     minutes = min % 60;
+     hours = (min - minutes) / 60 % 24;
+  } else {
+     minutes = 60 - (Math.abs(min) % 60);
+     hours  = 24 - Math.abs(Math.round((Math.abs(min) - minutes)/ 60) % 24);
+  }
+  if (hours === 24) {
+    hours = 00;
+  }
+
+  console.log(`${hours}:${minutes}`);
+}
+
+timeOfDay(-4321);

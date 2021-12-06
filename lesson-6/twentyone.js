@@ -169,13 +169,13 @@ while (true) {
     break;
   }
   prompt(`Current score: \ndealer: ${dealerRoundsWon} \nyou: ${playerRoundsWon} `);
-  prompt("Continue for best of 5? Y or N");
+  prompt("Continue for best of 5? Yes or No");
   let answer;
   while (true) {
-    answer = rlSync.question().toLowerCase()[0];
-    if (['y', 'n'].includes(answer)) break;
-    prompt("Must answer yes or no.")
+    answer = rlSync.question().toLowerCase();
+    if (['yes', 'no'].includes(answer)) break;
+    prompt("Must answer yes or no.");
   }
-  if (answer !== 'y') break;
+  if (answer !== 'yes') break;
 }
 prompt("Thanks for playing 21!");

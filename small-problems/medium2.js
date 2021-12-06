@@ -103,11 +103,100 @@ function validTriangle(angle1, angle2, angle3) {
 
 
 //unlucky days
+function fridayThe13ths(year) {
+  let fridays = 0;
+  for (let month = 0; month <= 12; month++) {
+    let date = new Date(year, month, 13);
+    let day = date.getDay();
+    if (day === 5) {
+      fridays += 1;
+    }
+  }
+  return fridays;
+}
+
+console.log(fridayThe13ths(1986));      // 1
+console.log(fridayThe13ths(2015));      // 3
+console.log(fridayThe13ths(2017));      // 2)
+
+//next featured number
+function featured(number) {
+  //find next featured number
+  if (number >= 9876543201)
+    return "there is no next featured number";
+  do {
+    number += 1;
+  }while (!isFeatured(number));
+  return number;
+}
+
+function isFeatured(number) {
+  if (number % 7 !== 0) {
+    return false;
+  } else if (number % 2 !== 1) {
+    return false;
+  } else {
+    //check that all the digits only appear once.
+    let string = String(number);
+    for (let i = 0; i < string.length; i++) {
+      let digit = string[i];
+      if (string.indexOf(digit,i + 1) !== - 1) {
+        return false;
+      }
+    }
+    return true;
+  }
+}
+  
+
+console.log(featured(12));           // 21
+console.log(featured(20));           // 21
+console.log(featured(21));           // 35
+console.log(featured(997));          // 1029
+console.log(featured(1029));         // 1043
+// featured(999999);       // 1023547
+// featured(999999987);    // 1023456987
+// featured(9876543186);   // 9876543201
+// featured(9876543200);   // 9876543201
+console.log(featured(9876543201));   // "There is no possible number that fulfills those requirements."
+
+
+//Sum Square - Square Sum
+//problem: 
+  //input: number
+  //output: number
+  //rules: compute the difference between
+            //-  the square of the sum of the first x integers
+            //- the sum of the squares of the firsts x integers
+  //examples in problem
+  //algorithm: 
+     // 1. declare and initialize variables to track the sum and sum of squares
+     // 2. for each number 1 to n: 
+            // 3. add n to the sum
+            // 4. add n**2 to the sum of squares
+    // 5. square the sum
+    // 6. return the difference.
+
+function sumSquareDifference(x) {
+  let sum = 0;
+  let sumOfSquares = 0;
+  for (let i = 1; i <= x; i ++) {
+    sum += i;
+    sumOfSquares += i**2;
+  }
+  let squareOfSum = sum**2;
+  return squareOfSum - sumOfSquares; 
+}
+
+console.log(sumSquareDifference(3));
+console.log(sumSquareDifference(10));
+console.log(sumSquareDifference(1));
+console.log(sumSquareDifference(100));
+
 
 
 
 //bubble sort
-
 
 
 function bubbleSort(array) {
@@ -115,15 +204,29 @@ function bubbleSort(array) {
   while(!inOrder) {
     inOrder = true;
     for (let i = 0;i < array.length - 1; i++) {
-      console.log(array);
+      // console.log(array);
       if(array[i] > array[i + 1]) {
         let temp = array[i];
         array[i] = array[i + 1];
         array[i + 1] = temp;
         inOrder = false;
-        console.log(array);
+        // console.log(array);
       }
     }
   }
 }
-bubbleSort([6,2,7,1,4]);
+// bubbleSort([6,2,7,1,4]);
+
+
+let longText =
+  'Four score and seven years ago our fathers brought forth on this ' +
+  'continent a new nation, conceived in liberty, and dedicated to the ' +
+  'proposition that all men are created equal. Now we are engaged in a ' +
+  'great civil war, testing whether that nation, or any nation so ' +
+  'conceived and so dedicated, can long endure. We are met on a great ' +
+  'battlefield of that war. We have come to dedicate a portion of that ' +
+  'field, as a final resting place for those who here gave their lives ' +
+  'that that nation might live. It is altogether fitting and proper that ' +
+  'we should do this.';
+
+let arr = longText.split(".").split("!");
